@@ -1,0 +1,18 @@
+BACKTRACKING USING RECURSION
+example: given numbers=[2,3,5] target sum=8
+find all possible combinations to get sum as 8, you can repeat the numbers more than once.
+
+python code
+def combinationSum(self, candidates, target):
+        answer = []
+        def combinationSumHelper(candidates, current_index, current_sum, current_combination, target):
+            if current_sum == target:
+                answer.append(current_combination)
+                return
+            if current_sum > target:
+                return
+            for i in range(current_index, len(candidates)):
+                combinationSumHelper(candidates, i, current_sum + candidates[i], current_combination + [candidates[i]], target)
+        
+        combinationSumHelper(candidates, 0, 0, [], target)
+        return answer
